@@ -1,6 +1,6 @@
 # Getting started
 
-This folder contains the souce code to reproduce the experimental results reported in (Kappel et al. 2014).
+Souce code to reproduce the experimental results reported in (Kappel et al. 2014).
 
 The experiments were run in Matlab R2007a (7.4.0.287) on a Linux machine (Fedora, Core release 6
 (Zod)).
@@ -16,7 +16,7 @@ running the script.
 
 The network dynamics and learning rules are implemented in the file [snn_sample_ctrf.m
 ](https://github.com/kappeld/hmm-stdp/blob/master/hmmsem/snn_sample_ctrf.m).
-All updates are updated using continous time updates using a variant of the Gillespie algorithm.
+The stochastic dynamics of neural parameters are simulated with continous time updates using a variant of the Gillespie algorithm.
 For further information see (Kappel et al. 2014).
 
 ### References
