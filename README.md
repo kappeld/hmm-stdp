@@ -8,7 +8,7 @@ The experiments were run in Matlab R2007a (7.4.0.287) on a Linux machine (Fedora
 To get started run the
 [run_experiment.m](https://github.com/kappeld/hmm-stdp/blob/master/run_experiment.m) script (you need writing permission on the current working
 directory to seccesfully run). This will perform a whole training session and plot the results.
-This experimental setup is equal to experiment 1 of (Kappel et al. 2014), to create the reults in Figure 2.
+This experimental setup is equal to experiment 1 of (Kappel et al. 2014), reported there in Figure 2.
 The results are saved to the `results/` subfolder of your current working directory that is created while
 running the script.
 
