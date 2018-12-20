@@ -1,0 +1,39 @@
+thresh = 10;
+time_range = [ 0.1500,    0.2000; ...
+               0.2000,    0.2500; ...
+               0,         0; ...
+               0,         0 ];
+
+
+h = eval_histogram(t_data.test_data,t_data.net,time_range);
+
+n_idx = 1:t_data.net.num_neurons;
+A_selective = [n_idx(mean(h(1:2,:),1) > thresh); h( :, mean(h(1:2,:),1) > thresh )];
+no_context = A_selective(:,and(A_selective(2,:)>thresh,A_selective(3,:)>thresh));
+context_ab = A_selective(:,and(A_selective(2,:)>thresh,A_selective(3,:)<thresh));
+context_ba = A_selective(:,and(A_selective(2,:)<thresh,A_selective(3,:)>thresh));
+
+context_ab(3,9) = 3;
+
+subplot(2,1,1);
+bar(1:size(no_context,2),no_context(2,:),'g');
+hold all;
+bar((size(no_context,2)+1):(size(no_context,2)+size(context_ab,2)),context_ab(2,:),'r');
+bar((size(no_context,2)+size(context_ab,2)+1):size(A_selective,2),context_ba(2,:),'b');
+plot([0,size(A_selective,2)+1],[thresh,thresh],'k--');
+xlim([0,size(A_selective,2)+1]);
+ylim([0,70]);
+
+subplot(2,1,2);
+bar(1:size(no_context,2),no_context(3,:),'g');
+hold all;
+bar((size(no_context,2)+1):(size(no_context,2)+size(context_ab,2)),context_ab(3,:),'r');
+bar((size(no_context,2)+size(context_ab,2)+1):size(A_selective,2),context_ba(3,:),'b');
+plot([0,size(A_selective,2)+1],[thresh,thresh],'k--');    
+xlim([0,size(A_selective,2)+1]);
+ylim([0,70]);
+
+
+plot_single_neuron_trials( m_data, 15, 'set_name', 'test_data', 'trials', 5:25, 'seq_id', 2, ...
+                           'neuron_order', 1:m_data.net.num_neurons, ...
+                           'neuron_labels', ones(1,m_data.net.num_neurons) )
